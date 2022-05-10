@@ -48,7 +48,7 @@ for directory in samples_dir:
                 shutil.rmtree(output_folder)
                             
             print(f"Computing Sirius on sample: {directory}")            
-            print(sirius_mgf_path)
+
             compute_sirius_canopus(sirius_mgf_path, output_folder)
             
             print(f"Computing NPC Canopus on sample: {directory}")
