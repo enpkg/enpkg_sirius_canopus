@@ -1,8 +1,9 @@
 # sirius_canopus
 
-**Aim**: python script to lauch Sirius/ZODIAC/CSI-FingerID/CANOPUS + NPC Canopus on unaligned repositories.
+### Aim:
+python script to lauch Sirius/ZODIAC/CSI-FingerID/CANOPUS + NPC Canopus on unaligned repositories.
 
-Steps:
+### Steps:
 1. Download and install Sirius from [Sirius website](https://bio.informatik.uni-jena.de/software/sirius/). Make sure that you can use Sirius from your Terminal (for Windows, you will have to add sirius installation folder to you path).
 2. Clone this repository
 3. Create (<code>conda env create -f environment.yml</code>) and activate environment (<code>conda activate sirius_canopus_single_files</code>)
@@ -20,3 +21,6 @@ data
 ```
 6. Launch the script: <code>python sirius_canopus_by_file.py</code><br>
 NB: Sirius will be run only on files with "sample" datatype, not on QC, blanks or any other type.
+
+### Sources:
+For NPC Canopus, code copied from https://github.com/kaibioinfo/canopus_treemap
