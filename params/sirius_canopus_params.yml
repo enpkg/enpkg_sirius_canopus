@@ -1,6 +1,6 @@
 paths:
-  - path_to_data: 'C:/Users/gaudrya.FARMA/Desktop/test_individual_files' # Path to files to process
+  - path_to_data: '/Users/pma/02_tmp/ind_files' # Path to files to process
 options:
-  - output_suffix: 'WORKSPACE_SIRIUS' # Siffux to add the sample name to the SIRIUS output directory
+  - output_suffix: 'WORKSPACE_SIRIUS' # Suffix to add the sample name to the SIRIUS output directory
   - recompute: False # Recompute files for which output directory (with the same prefix) already exists: True of False (no quotes)
   - zip_output: True # Zip individual features outputs to save disk space: True of False (no quotes)

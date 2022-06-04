@@ -24,6 +24,18 @@ def compute_sirius_canopus(file, output_name):
         --profile orbitrap --candidates 10 --tree-timeout 50 --compound-timeout 500 --ions-considered [M+H3N+H]+,[M+H]+,[M+K]+,[M+Na]+,[M+NH4]+\
         --ions-enforced [M+H]+ zodiac structure --database bio canopus")
  #--processors 40 
+
+ sirius -i /Users/pma/02_tmp/ind_files/DBGI_01_04_008/DBGI_01_04_008_sirius_pos.mgf --output /Users/pma/02_tmp/ind_files/DBGI_01_04_008/DBGI_01_04_008_WORKSPACE_SIRIUS \
+     config --IsotopeSettings.filter true --FormulaSearchDB BIO --Timeout.secondsPerTree 300 --FormulaSettings.enforced HCNOP --Timeout.secondsPerInstance 300 \
+     --AdductSettings.detectable '[[M + H]+, [M - H4O2 + H]+, [M - H2O + H]+, [M + Na]+, [M + H3N + H]+, [M + K]+]' --UseHeuristic.mzToUseHeuristicOnly 650 \
+         --AlgorithmProfile orbitrap --IsotopeMs2Settings SCORE --MS2MassDeviation.allowedMassDeviation 5.0ppm --NumberOfCandidatesPerIon 1 --UseHeuristic.mzToUseHeuristic 300\
+             --FormulaSettings.detectable B,Cl,Br,Se,S --NumberOfCandidates 10 --ZodiacNumberOfConsideredCandidatesAt300Mz 10 --ZodiacRunInTwoSteps true \
+                 --ZodiacEdgeFilterThresholds.minLocalConnections 10 --ZodiacEdgeFilterThresholds.thresholdFilter 0.95 --ZodiacEpochs.burnInPeriod 2000 \
+                     --ZodiacEpochs.numberOfMarkovChains 10 --ZodiacNumberOfConsideredCandidatesAt800Mz 50 --ZodiacEpochs.iterations 20000 \
+                         --AdductSettings.enforced , --AdductSettings.fallback '[[M + H]+, [ M + Na]+, [M + K]+]' --FormulaResultThreshold true --InjectElGordoCompounds true \
+                             --StructureSearchDB BIO --RecomputeResults false formula zodiac fingerprint structure canopus
+ 
+ 
  
 path = os.path.normpath(path_to_data)
 samples_dir = [directory for directory in os.listdir(path)]
