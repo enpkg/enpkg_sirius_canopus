@@ -7,9 +7,9 @@ import shutil
 from canopus import Canopus
 
 my_env = os.environ.copy()
+my_env["GUROBI_HOME"] = "/prog/gurobi951/linux64/"
 
 print(my_env)
-
 
 p = Path(__file__).parents[0]
 os.chdir(p)
