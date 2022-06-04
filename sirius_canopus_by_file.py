@@ -8,6 +8,7 @@ from canopus import Canopus
 
 p = Path(__file__).parents[0]
 os.chdir(p)
+print(p)
 
 with open (r'params/sirius_canopus_params.yml') as file:    
     params_list = yaml.load(file, Loader=yaml.FullLoader)
@@ -60,7 +61,9 @@ for directory in samples_dir:
             if os.path.isdir(output_folder):
                 shutil.rmtree(output_folder)
                             
-            print(f"Computing Sirius on sample: {directory}")            
+            print(f"Computing Sirius on sample: {directory}")    
+            
+            print(sirius_mgf_path, output_folder)   
 
             compute_sirius5_canopus(sirius_mgf_path, output_folder)
             
