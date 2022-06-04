@@ -36,7 +36,7 @@ def compute_sirius5_canopus(file, output_name):
                 --ZodiacEdgeFilterThresholds.minLocalConnections 10 --ZodiacEdgeFilterThresholds.thresholdFilter 0.95 --ZodiacEpochs.burnInPeriod 2000 \
                     --ZodiacEpochs.numberOfMarkovChains 10 --ZodiacNumberOfConsideredCandidatesAt800Mz 50 --ZodiacEpochs.iterations 20000 \
                         --AdductSettings.enforced , --AdductSettings.fallback '[[M + H]+, [ M + Na]+, [M + K]+]' --FormulaResultThreshold true --InjectElGordoCompounds true \
-                            --StructureSearchDB BIO --RecomputeResults false formula zodiac fingerprint structure canopus", shell=True, executable='/bin/bash')
+                            --StructureSearchDB BIO --RecomputeResults false formula zodiac fingerprint structure canopus", shell=True, executable='/usr/share/zsh')
 
  
 path = os.path.normpath(path_to_data)
