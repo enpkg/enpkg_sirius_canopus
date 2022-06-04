@@ -27,7 +27,7 @@ def compute_sirius_canopus(file, output_name):
  #--processors 40 
 
 def compute_sirius5_canopus(file, output_name):
-    subprocess.run(f"sirius -i {file} --output {output_name} \
+    subprocess.run(f"/prog/sirius/bin/sirius -i {file} --output {output_name} \
     --maxmz 800 \
     config --IsotopeSettings.filter true --FormulaSearchDB BIO --Timeout.secondsPerTree 300 --FormulaSettings.enforced HCNOP --Timeout.secondsPerInstance 300 \
     --AdductSettings.detectable '[[M + H]+, [M - H4O2 + H]+, [M - H2O + H]+, [M + Na]+, [M + H3N + H]+, [M + K]+]' --UseHeuristic.mzToUseHeuristicOnly 650 \
@@ -36,7 +36,7 @@ def compute_sirius5_canopus(file, output_name):
                 --ZodiacEdgeFilterThresholds.minLocalConnections 10 --ZodiacEdgeFilterThresholds.thresholdFilter 0.95 --ZodiacEpochs.burnInPeriod 2000 \
                     --ZodiacEpochs.numberOfMarkovChains 10 --ZodiacNumberOfConsideredCandidatesAt800Mz 50 --ZodiacEpochs.iterations 20000 \
                         --AdductSettings.enforced , --AdductSettings.fallback '[[M + H]+, [ M + Na]+, [M + K]+]' --FormulaResultThreshold true --InjectElGordoCompounds true \
-                            --StructureSearchDB BIO --RecomputeResults false formula zodiac fingerprint structure canopus", shell=True, executable='/usr/share/zsh')
+                            --StructureSearchDB BIO --RecomputeResults false formula zodiac fingerprint structure canopus")
 
  
 path = os.path.normpath(path_to_data)
