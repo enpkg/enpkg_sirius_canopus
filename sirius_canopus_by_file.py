@@ -25,17 +25,18 @@ def compute_sirius_canopus(file, output_name):
         --ions-enforced [M+H]+ zodiac structure --database bio canopus")
  #--processors 40 
 
- sirius -i /Users/pma/02_tmp/ind_files/DBGI_01_04_008/DBGI_01_04_008_sirius_pos.mgf --output /Users/pma/02_tmp/ind_files/DBGI_01_04_008/DBGI_01_04_008_WORKSPACE_SIRIUS \
-     config --IsotopeSettings.filter true --FormulaSearchDB BIO --Timeout.secondsPerTree 300 --FormulaSettings.enforced HCNOP --Timeout.secondsPerInstance 300 \
-     --AdductSettings.detectable '[[M + H]+, [M - H4O2 + H]+, [M - H2O + H]+, [M + Na]+, [M + H3N + H]+, [M + K]+]' --UseHeuristic.mzToUseHeuristicOnly 650 \
-         --AlgorithmProfile orbitrap --IsotopeMs2Settings SCORE --MS2MassDeviation.allowedMassDeviation 5.0ppm --NumberOfCandidatesPerIon 1 --UseHeuristic.mzToUseHeuristic 300\
-             --FormulaSettings.detectable B,Cl,Br,Se,S --NumberOfCandidates 10 --ZodiacNumberOfConsideredCandidatesAt300Mz 10 --ZodiacRunInTwoSteps true \
-                 --ZodiacEdgeFilterThresholds.minLocalConnections 10 --ZodiacEdgeFilterThresholds.thresholdFilter 0.95 --ZodiacEpochs.burnInPeriod 2000 \
-                     --ZodiacEpochs.numberOfMarkovChains 10 --ZodiacNumberOfConsideredCandidatesAt800Mz 50 --ZodiacEpochs.iterations 20000 \
-                         --AdductSettings.enforced , --AdductSettings.fallback '[[M + H]+, [ M + Na]+, [M + K]+]' --FormulaResultThreshold true --InjectElGordoCompounds true \
-                             --StructureSearchDB BIO --RecomputeResults false formula zodiac fingerprint structure canopus
- 
- 
+def compute_sirius5_canopus(file, output_name):
+    subprocess.run(f"sirius -i {file} --output {output_name} \
+    --maxmz 800 \
+    config --IsotopeSettings.filter true --FormulaSearchDB BIO --Timeout.secondsPerTree 300 --FormulaSettings.enforced HCNOP --Timeout.secondsPerInstance 300 \
+    --AdductSettings.detectable '[[M + H]+, [M - H4O2 + H]+, [M - H2O + H]+, [M + Na]+, [M + H3N + H]+, [M + K]+]' --UseHeuristic.mzToUseHeuristicOnly 650 \
+        --AlgorithmProfile orbitrap --IsotopeMs2Settings SCORE --MS2MassDeviation.allowedMassDeviation 5.0ppm --NumberOfCandidatesPerIon 1 --UseHeuristic.mzToUseHeuristic 300\
+            --FormulaSettings.detectable B,Cl,Br,Se,S --NumberOfCandidates 10 --ZodiacNumberOfConsideredCandidatesAt300Mz 10 --ZodiacRunInTwoSteps true \
+                --ZodiacEdgeFilterThresholds.minLocalConnections 10 --ZodiacEdgeFilterThresholds.thresholdFilter 0.95 --ZodiacEpochs.burnInPeriod 2000 \
+                    --ZodiacEpochs.numberOfMarkovChains 10 --ZodiacNumberOfConsideredCandidatesAt800Mz 50 --ZodiacEpochs.iterations 20000 \
+                        --AdductSettings.enforced , --AdductSettings.fallback '[[M + H]+, [ M + Na]+, [M + K]+]' --FormulaResultThreshold true --InjectElGordoCompounds true \
+                            --StructureSearchDB BIO --RecomputeResults false formula zodiac fingerprint structure canopus")
+
  
 path = os.path.normpath(path_to_data)
 samples_dir = [directory for directory in os.listdir(path)]
@@ -61,7 +62,7 @@ for directory in samples_dir:
                             
             print(f"Computing Sirius on sample: {directory}")            
 
-            compute_sirius_canopus(sirius_mgf_path, output_folder)
+            compute_sirius5_canopus(sirius_mgf_path, output_folder)
             
             print(f"Computing NPC Canopus on sample: {directory}")
             
