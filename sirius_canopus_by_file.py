@@ -7,7 +7,7 @@ import shutil
 from canopus import Canopus
 
 my_env = os.environ.copy()
-my_env["GUROBI_HOME"] = "/prog/gurobi951/linux64/"
+# my_env["GUROBI_HOME"] = "/prog/gurobi951/linux64/"
 
 print(my_env)
 
@@ -43,7 +43,32 @@ def compute_sirius5_canopus(file, output_name):
                         --AdductSettings.enforced , --AdductSettings.fallback '[[M + H]+, [ M + Na]+, [M + K]+]' --FormulaResultThreshold true --InjectElGordoCompounds true \
                             --StructureSearchDB BIO --RecomputeResults false formula zodiac fingerprint structure canopus", shell=True, env=my_env)
 
+
  
+# sirius -i /media/share/mapp_metabolomics_private/DBGI/ind_files/DBGI_01_04_050/DBGI_01_04_050_sirius_pos.mgf --output /media/share/mapp_metabolomics_private/DBGI/ind_files/DBGI_01_04_050/DBGI_01_04_050_WORKSPACE_SIRIUS \
+#     --maxmz 800 \
+#     config --IsotopeSettings.filter true --FormulaSearchDB BIO --Timeout.secondsPerTree 300 --FormulaSettings.enforced HCNOP --Timeout.secondsPerInstance 300 \
+#     --AdductSettings.detectable '[[M + H]+, [M - H4O2 + H]+, [M - H2O + H]+, [M + Na]+, [M + H3N + H]+, [M + K]+]' --UseHeuristic.mzToUseHeuristicOnly 650 \
+#         --AlgorithmProfile orbitrap --IsotopeMs2Settings SCORE --MS2MassDeviation.allowedMassDeviation 5.0ppm --NumberOfCandidatesPerIon 1 --UseHeuristic.mzToUseHeuristic 300\
+#             --FormulaSettings.detectable B,Cl,Br,Se,S --NumberOfCandidates 10 --ZodiacNumberOfConsideredCandidatesAt300Mz 10 --ZodiacRunInTwoSteps true \
+#                 --ZodiacEdgeFilterThresholds.minLocalConnections 10 --ZodiacEdgeFilterThresholds.thresholdFilter 0.95 --ZodiacEpochs.burnInPeriod 2000 \
+#                     --ZodiacEpochs.numberOfMarkovChains 10 --ZodiacNumberOfConsideredCandidatesAt800Mz 50 --ZodiacEpochs.iterations 20000 \
+#                         --AdductSettings.enforced , --AdductSettings.fallback '[[M + H]+, [ M + Na]+, [M + K]+]' --FormulaResultThreshold true --InjectElGordoCompounds true \
+#                             --StructureSearchDB BIO --RecomputeResults false formula zodiac fingerprint structure canopus
+# sirius -i /Users/pma/02_tmp/ind_files/DBGI_01_04_050/DBGI_01_04_050_sirius_pos.mgf --output /Users/pma/02_tmp/ind_files/DBGI_01_04_050/DBGI_01_04_050_WORKSPACE_SIRIUS \
+#     --maxmz 800 \
+#     config --IsotopeSettings.filter true --FormulaSearchDB BIO --Timeout.secondsPerTree 300 --FormulaSettings.enforced HCNOP --Timeout.secondsPerInstance 300 \
+#     --AdductSettings.detectable '[[M + H]+, [M - H4O2 + H]+, [M - H2O + H]+, [M + Na]+, [M + H3N + H]+, [M + K]+]' --UseHeuristic.mzToUseHeuristicOnly 650 \
+#         --AlgorithmProfile orbitrap --IsotopeMs2Settings SCORE --MS2MassDeviation.allowedMassDeviation 5.0ppm --NumberOfCandidatesPerIon 1 --UseHeuristic.mzToUseHeuristic 300\
+#             --FormulaSettings.detectable B,Cl,Br,Se,S --NumberOfCandidates 10 --ZodiacNumberOfConsideredCandidatesAt300Mz 10 --ZodiacRunInTwoSteps true \
+#                 --ZodiacEdgeFilterThresholds.minLocalConnections 10 --ZodiacEdgeFilterThresholds.thresholdFilter 0.95 --ZodiacEpochs.burnInPeriod 2000 \
+#                     --ZodiacEpochs.numberOfMarkovChains 10 --ZodiacNumberOfConsideredCandidatesAt800Mz 50 --ZodiacEpochs.iterations 20000 \
+#                         --AdductSettings.enforced , --AdductSettings.fallback '[[M + H]+, [ M + Na]+, [M + K]+]' --FormulaResultThreshold true --InjectElGordoCompounds true \
+#                             --StructureSearchDB BIO --RecomputeResults false formula zodiac fingerprint structure canopus                          
+                            
+#                  /Users/pma/02_tmp/ind_files/DBGI_01_04_050     
+                 
+                       
 path = os.path.normpath(path_to_data)
 samples_dir = [directory for directory in os.listdir(path)]
 
