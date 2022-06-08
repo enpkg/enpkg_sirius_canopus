@@ -25,7 +25,7 @@ recompute = params_list['options'][1]['recompute']
 zip_output = params_list['options'][2]['zip_output']
 
 # Lauch sirius+ canopus job on a file
-def compute_sirius_canopus(file, output_name):
+def compute_sirius4_canopus(file, output_name):
     subprocess.run(f"sirius -i {file} --output {output_name} --maxmz 800 formula --ppm-max 10 \
         --profile orbitrap --candidates 10 --tree-timeout 50 --compound-timeout 500 --ions-considered [M+H3N+H]+,[M+H]+,[M+K]+,[M+Na]+,[M+NH4]+\
         --ions-enforced [M+H]+ zodiac structure --database bio canopus")
@@ -43,6 +43,12 @@ def compute_sirius5_canopus(file, output_name):
                         --AdductSettings.enforced , --AdductSettings.fallback '[[M + H]+, [ M + Na]+, [M + K]+]' --FormulaResultThreshold true --InjectElGordoCompounds true \
                             --StructureSearchDB BIO --RecomputeResults false formula zodiac fingerprint structure canopus", shell=True, env=my_env)
 
+def compute_sirius5_canopus(file, output_name):
+    subprocess.run(f"sirius -i {file} --output {output_name} --maxmz 800 formula --ppm-max 10 \
+        --profile orbitrap --candidates 10 --tree-timeout 50 --compound-timeout 500 --ions-considered [M+H3N+H]+,[M+H]+,[M+K]+,[M+Na]+,[M+NH4]+\
+        --ions-enforced [M+H]+ zodiac fingerprint structure --db bio canopus write-summaries --output {output_name}")
+    
+ #--processors 40 
 
  
 # sirius -i /media/share/mapp_metabolomics_private/DBGI/ind_files/DBGI_01_04_050/DBGI_01_04_050_sirius_pos.mgf --output /media/share/mapp_metabolomics_private/DBGI/ind_files/DBGI_01_04_050/DBGI_01_04_050_WORKSPACE_SIRIUS \
@@ -97,12 +103,12 @@ for directory in samples_dir:
 
             compute_sirius5_canopus(sirius_mgf_path, output_folder)
             
-            print(f"Computing NPC Canopus on sample: {directory}")
+            # print(f"Computing NPC Canopus on sample: {directory}")
             
-            C = Canopus(sirius=output_folder)
-            C.npcSummary().to_csv(os.path.join(output_folder, "npc_summary.csv"))
+            # C = Canopus(sirius=output_folder)
+            # C.npcSummary().to_csv(os.path.join(output_folder, "npc_summary.csv"))
             
-            print(f"Zipping outputs on sample: {directory}")
+            # print(f"Zipping outputs on sample: {directory}")
             
             if zip_output:
                 for dir in [directory for directory in os.listdir(output_folder)]:
