@@ -19,10 +19,11 @@ with open (r'params/sirius_canopus_params.yml') as file:
 path_to_data = params_list['paths'][0]['path_to_data']
 
 sirius_version = params_list['options'][0]['sirius_version']
-sirius_command = params_list['options'][1]['sirius_command']
-output_suffix = params_list['options'][2]['output_suffix']
-recompute = params_list['options'][3]['recompute']
-zip_output = params_list['options'][4]['zip_output']
+ioniziation = params_list['options'][1]['ioniziation']
+sirius_command = params_list['options'][2]['sirius_command']
+output_suffix = params_list['options'][3]['output_suffix']
+recompute = params_list['options'][4]['recompute']
+zip_output = params_list['options'][5]['zip_output']
 
         
 # Lauch sirius+ canopus job on a file
@@ -63,8 +64,14 @@ for directory in samples_dir:
         continue
     # Check if the sample type is sample and not QC or Blank
     if metadata['sample_type'][0] == 'sample':
-        sirius_mgf_path = os.path.join(path, directory,directory + '_sirius_pos.mgf')      
-        output_folder = os.path.join(path, directory,directory + '_' + output_suffix)        
+        if ioniziation == 'pos':    
+            sirius_mgf_path = os.path.join(path, directory,ioniziation, directory + '_sirius_pos.mgf')
+        elif ioniziation == 'neg':    
+            sirius_mgf_path = os.path.join(path, directory,ioniziation, directory + '_sirius_neg.mgf')
+        else:
+            raise ValueError("ioniziation parameter must be pos or neg")   
+           
+        output_folder = os.path.join(path, directory, ioniziation, directory + '_' + output_suffix)        
         if (recompute is False) & (os.path.isdir(output_folder)):
             print(f"Skipped already computed sample: {directory}")          
             continue
@@ -79,6 +86,7 @@ for directory in samples_dir:
                 C = Canopus(sirius=output_folder)
                 C.npcSummary().to_csv(os.path.join(output_folder, "npc_summary.csv"))            
                 print(f"Zipping outputs on sample: {directory}")
+                
             elif sirius_version == 5:
                 print(f"Computing Sirius on sample: {directory}")
                 compute_sirius_canopus(sirius_mgf_path, output_folder)
@@ -91,7 +99,7 @@ for directory in samples_dir:
                         shutil.make_archive(os.path.join(output_folder, dir), 'zip', os.path.join(output_folder, dir))
                         shutil.rmtree(os.path.join(output_folder, dir))
                           
-            shutil.copyfile(r'params/sirius_canopus_params.yml', os.path.join(path, directory,directory + '_' + output_suffix, 'params.yml'))
+            shutil.copyfile(r'params/sirius_canopus_params.yml', os.path.join(path, directory, ioniziation, directory + '_' + output_suffix, 'params.yml'))
             
             print(f"Sample: {directory} done")
                 
