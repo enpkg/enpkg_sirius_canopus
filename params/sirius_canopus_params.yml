@@ -1,6 +1,24 @@
 paths:
   - path_to_data: 'C:/Users/gaudrya.FARMA/Desktop/test_individual_files' # Path to files to process
 options:
+  - sirius_version: 5 # Sirius version: 4 or 5
+  - sirius_command: "sirius -i {file} --output {output_name} --maxmz 800 formula --ppm-max 10 \
+ --profile orbitrap --candidates 10 --tree-timeout 50 --compound-timeout 500 --ions-considered [M+H3N+H]+,[M+H]+,[M+K]+,[M+Na]+,[M+NH4]+ \
+ --ions-enforced [M+H]+ zodiac fingerprint structure --db bio canopus write-summaries --output {output_name}"
+        # Don't change input and output parameters
+
   - output_suffix: 'WORKSPACE_SIRIUS' # Suffix to add the sample name to the SIRIUS output directory
   - recompute: True # Recompute files for which output directory (with the same prefix) already exists: True of False (no quotes)
   - zip_output: True # Zip individual features outputs to save disk space: True of False (no quotes)
+
+# Example command for sirius 4:
+
+# sirius -i {file} --output {output_name} --maxmz 800 formula --ppm-max 10 \
+# --profile orbitrap --candidates 10 --tree-timeout 50 --compound-timeout 500 --ions-considered [M+H3N+H]+,[M+H]+,[M+K]+,[M+Na]+,[M+NH4]+ \
+# --ions-enforced [M+H]+ zodiac structure --database bio canopus
+
+# Example command for sirius 5:
+
+# sirius -i {file} --output {output_name} --maxmz 800 formula --ppm-max 10 \
+# --profile orbitrap --candidates 10 --tree-timeout 50 --compound-timeout 500 --ions-considered [M+H3N+H]+,[M+H]+,[M+K]+,[M+Na]+,[M+NH4]+ \
+# --ions-enforced [M+H]+ zodiac fingerprint structure --db bio canopus write-summaries --output {output_name}"
