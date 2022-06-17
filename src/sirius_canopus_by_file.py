@@ -4,16 +4,15 @@ from pathlib import Path
 import pandas as pd
 import subprocess
 import shutil
-from canopus import Canopus
 
 my_env = os.environ.copy()
 # my_env["GUROBI_HOME"] = "/prog/gurobi951/linux64/"
 
-p = Path(__file__).parents[0]
+p = Path(__file__).parents[1]
 os.chdir(p)
-print(p)
+from canopus import Canopus
 
-with open (r'params/sirius_canopus_params.yml') as file:    
+with open (r'configs/user/user.yml') as file:    
     params_list = yaml.load(file, Loader=yaml.FullLoader)
 
 path_to_data = params_list['paths'][0]['path_to_data']
@@ -29,28 +28,7 @@ zip_output = params_list['options'][5]['zip_output']
 # Lauch sirius+ canopus job on a file
 def compute_sirius_canopus(file, output_name):
     subprocess.run(sirius_command.format(file=file, output_name=output_name))
- #--processors 40 
-
-# def compute_sirius5_canopus(file, output_name):
-#     subprocess.run(f"/prog/sirius/bin/sirius -i {file} --output {output_name} \
-#     --maxmz 800 \
-#     config --IsotopeSettings.filter true --FormulaSearchDB BIO --Timeout.secondsPerTree 300 --FormulaSettings.enforced HCNOP --Timeout.secondsPerInstance 300 \
-#     --AdductSettings.detectable '[[M + H]+, [M - H4O2 + H]+, [M - H2O + H]+, [M + Na]+, [M + H3N + H]+, [M + K]+]' --UseHeuristic.mzToUseHeuristicOnly 650 \
-#         --AlgorithmProfile orbitrap --IsotopeMs2Settings SCORE --MS2MassDeviation.allowedMassDeviation 5.0ppm --NumberOfCandidatesPerIon 1 --UseHeuristic.mzToUseHeuristic 300\
-#             --FormulaSettings.detectable B,Cl,Br,Se,S --NumberOfCandidates 10 --ZodiacNumberOfConsideredCandidatesAt300Mz 10 --ZodiacRunInTwoSteps true \
-#                 --ZodiacEdgeFilterThresholds.minLocalConnections 10 --ZodiacEdgeFilterThresholds.thresholdFilter 0.95 --ZodiacEpochs.burnInPeriod 2000 \
-#                     --ZodiacEpochs.numberOfMarkovChains 10 --ZodiacNumberOfConsideredCandidatesAt800Mz 50 --ZodiacEpochs.iterations 20000 \
-#                         --AdductSettings.enforced , --AdductSettings.fallback '[[M + H]+, [ M + Na]+, [M + K]+]' --FormulaResultThreshold true --InjectElGordoCompounds true \
-#                             --StructureSearchDB BIO --RecomputeResults false formula zodiac fingerprint structure canopus", shell=True, env=my_env)
-
-# def compute_sirius5_canopus(file, output_name):
-#     subprocess.run(f"sirius -i {file} --output {output_name} --maxmz 800 formula --ppm-max 10 \
-#         --profile orbitrap --candidates 10 --tree-timeout 50 --compound-timeout 500 --ions-considered [M+H3N+H]+,[M+H]+,[M+K]+,[M+Na]+,[M+NH4]+\
-#         --ionsEnforced [M + H]+ zodiac fingerprint structure --db bio canopus write-summaries --output {output_name}")
-    
- #--processors 40 
-
-                       
+                      
 path = os.path.normpath(path_to_data)
 samples_dir = [directory for directory in os.listdir(path)]
 
@@ -99,7 +77,7 @@ for directory in samples_dir:
                         shutil.make_archive(os.path.join(output_folder, dir), 'zip', os.path.join(output_folder, dir))
                         shutil.rmtree(os.path.join(output_folder, dir))
                           
-            shutil.copyfile(r'params/sirius_canopus_params.yml', os.path.join(path, directory, ioniziation, directory + '_' + output_suffix, 'params.yml'))
+            shutil.copyfile(r'configs/user/user.yml', os.path.join(path, directory, ioniziation, directory + '_' + output_suffix, 'params.yml'))
             
             print(f"Sample: {directory} done")
                 
