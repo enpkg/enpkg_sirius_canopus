@@ -7,8 +7,6 @@ options:
  --profile orbitrap --candidates 10 --tree-timeout 50 --compound-timeout 500 --ions-considered [M+H3N+H]+,[M+H]+,[M+K]+,[M+Na]+,[M+NH4]+ \
  --ions-enforced [M+H]+ zodiac fingerprint structure --db bio canopus write-summaries --output {output_name}"
         # Don't change input and output parameters
-
-  - output_suffix: 'WORKSPACE_SIRIUS' # Suffix to add the sample name to the SIRIUS output directory
   - recompute: True # Recompute files for which output directory (with the same prefix) already exists: True of False (no quotes)
   - zip_output: True # Zip individual features outputs to save disk space: True of False (no quotes)
 
