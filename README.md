@@ -30,7 +30,7 @@ conda env create -f environment.yml
 ```
 3. Activate environment:  
 ```console 
-conda activate indifiles_annotation_env
+conda activate sirius_canopus_single_files
 ```
 
 ## 3. Adapt parameters and launch the process! 🚀
