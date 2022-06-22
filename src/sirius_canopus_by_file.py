@@ -27,7 +27,7 @@ output_suffix = 'WORKSPACE_SIRIUS'
     
 # Lauch sirius+ canopus job on a file
 def compute_sirius_canopus(file, output_name):
-    subprocess.run(sirius_command.format(file=file, output_name=output_name))
+    subprocess.run(sirius_command.format(file=file, output_name=output_name), shell = True)
                       
 path = os.path.normpath(path_to_data)
 samples_dir = [directory for directory in os.listdir(path)]
