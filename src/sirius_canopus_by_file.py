@@ -20,11 +20,11 @@ path_to_data = params_list['paths'][0]['path_to_data']
 sirius_version = params_list['options'][0]['sirius_version']
 ioniziation = params_list['options'][1]['ioniziation']
 sirius_command = params_list['options'][2]['sirius_command']
-output_suffix = params_list['options'][3]['output_suffix']
-recompute = params_list['options'][4]['recompute']
-zip_output = params_list['options'][5]['zip_output']
+recompute = params_list['options'][3]['recompute']
+zip_output = params_list['options'][4]['zip_output']
 
-        
+output_suffix = 'WORKSPACE_SIRIUS'
+    
 # Lauch sirius+ canopus job on a file
 def compute_sirius_canopus(file, output_name):
     subprocess.run(sirius_command.format(file=file, output_name=output_name))
