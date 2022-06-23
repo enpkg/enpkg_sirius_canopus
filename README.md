@@ -21,6 +21,9 @@ data/
 ## 1. Download and install Sirius
 Download and install Sirius from [Sirius website](https://bio.informatik.uni-jena.de/software/sirius/). Make sure that you can use Sirius from your Terminal (for Windows, you will have to add sirius installation folder to your [PATH](https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14))).
 
+## Sirius 4 only: install canopus_treemap
+For Sirius 4 only, install  https://github.com/kaibioinfo/canopus_treemap to have the NPClassifier classes from Canopus analysis. 
+
 ## 2. Clone repository and install environment
 
 1. Clone this repository.
@@ -63,5 +66,4 @@ data/
 └─── sample_n/
 ```
 
-### Sources:
-For NPC Canopus (for Sirius 4 only), code copied from https://github.com/kaibioinfo/canopus_treemap
+
