@@ -2,7 +2,7 @@ paths:
   - path_to_data: 'C:/Users/gaudrya.FARMA/Desktop/ordered' # Path to files to process
 options:
   - sirius_version: 5 # Sirius version: 4 or 5
-  - ioniziation: 'pos' # Ionization mode to process: pos or neg
+  - ionization: 'pos' # Ionization mode to process: pos or neg
   - sirius_command:  "sirius -i {file} --output {output_name} --maxmz 800 formula --ppm-max 10 \
  --profile orbitrap --candidates 10 --tree-timeout 50 --compound-timeout 500 --ions-considered [M+H3N+H]+,[M+H]+,[M+K]+,[M+Na]+,[M+NH4]+ \
  --ions-enforced [M+H]+ zodiac fingerprint structure --db bio canopus write-summaries --output {output_name}"
