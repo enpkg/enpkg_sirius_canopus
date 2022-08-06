@@ -7,11 +7,11 @@ import shutil
 from tqdm import tqdm
 
 my_env = os.environ.copy()
-# my_env["GUROBI_HOME"] = "/prog/gurobi951/linux64/"
+my_env["GUROBI_HOME"] = "/prog/gurobi951/linux64/"
 
 p = Path(__file__).parents[1]
 os.chdir(p)
-from canopus import Canopus
+#from canopus import Canopus
 
 with open (r'configs/user/user.yml') as file:    
     params_list = yaml.load(file, Loader=yaml.FullLoader)
@@ -28,7 +28,7 @@ output_suffix = 'WORKSPACE_SIRIUS'
     
 # Lauch sirius+ canopus job on a file
 def compute_sirius_canopus(file, output_name):
-    subprocess.run(sirius_command.format(file=file, output_name=output_name), shell = True)
+    subprocess.run(sirius_command.format(file=file, output_name=output_name), shell = True, env=my_env)
                       
 path = os.path.normpath(path_to_data)
 samples_dir = [directory for directory in os.listdir(path)]
