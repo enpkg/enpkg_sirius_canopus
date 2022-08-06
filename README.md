@@ -40,6 +40,10 @@ conda activate sirius_canopus_single_files
 
 1. Copy and rename the parameters file <code>../indifiles_annotation/configs/default/default.yml</code> into <code>../indifiles_annotation/configs/user/user.yml</code>
 2. Modifiy the user.yml file according to your needs (especially the paths).
+
+Note: if sirius is an alias on your system it might lead to errors. In this case just replace sirius by the path to your sirius binaries (e.g. /prog/sirius/bin/sirius) 
+
+
 3. Launch the script:
 ```console 
 python src/sirius_canopus_by_file.py
