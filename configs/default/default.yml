@@ -1,5 +1,5 @@
 paths:
-  - path_to_data: 'C:/Users/gaudrya.FARMA/Desktop/ordered' # Path to files to process
+  - path_to_data: 'Path/to/your/data' # Path to files to process
 options:
   - sirius_version: 5 # Sirius version: 4 or 5
   - ionization: 'pos' # Ionization mode to process: pos or neg

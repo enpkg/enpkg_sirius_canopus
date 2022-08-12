@@ -25,6 +25,9 @@ recompute = params_list['options'][3]['recompute']
 zip_output = params_list['options'][4]['zip_output']
 
 output_suffix = 'WORKSPACE_SIRIUS'
+
+if sirius_version == 4:
+    from canopus import Canopus
     
 # Lauch sirius+ canopus job on a file
 def compute_sirius_canopus(file, output_name):
