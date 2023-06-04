@@ -5,6 +5,7 @@ import pandas as pd
 import subprocess
 import shutil
 from tqdm import tqdm
+import git
 
 my_env = os.environ.copy()
 my_env["GUROBI_HOME"] = "/prog/gurobi951/linux64/"
@@ -25,6 +26,11 @@ recompute = params_list['options'][3]['recompute']
 zip_output = params_list['options'][4]['zip_output']
 
 output_suffix = 'WORKSPACE_SIRIUS'
+
+""" Parameters used """
+params_list.update({'version_info':[{'git_commit':git.Repo(search_parent_directories=True).head.object.hexsha},
+                                    {'git_commit_link':f'https://github.com/enpkg/enpkg_sirius_canopus/tree/{git.Repo(search_parent_directories=True).head.object.hexsha}'}]})
+
 
 if sirius_version == 4:
     from canopus import Canopus
@@ -81,7 +87,8 @@ for directory in tqdm(samples_dir):
                         shutil.make_archive(os.path.join(output_folder, dir), 'zip', os.path.join(output_folder, dir))
                         shutil.rmtree(os.path.join(output_folder, dir))
                           
-            shutil.copyfile(r'configs/user/user.yml', os.path.join(path, directory, ionization, directory + '_' + output_suffix, 'params.yml'))
-            
+            with open(os.path.join(path, directory, ionization, directory + '_' + output_suffix, 'params.yml'), 'w') as file:
+                yaml.dump(params_list, file)
+
             print(f"Sample: {directory} done")
                 
