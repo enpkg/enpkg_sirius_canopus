@@ -28,9 +28,12 @@ zip_output = params_list['options'][4]['zip_output']
 output_suffix = 'WORKSPACE_SIRIUS'
 
 """ Parameters used """
+sirius_version_str = subprocess.check_output(["sirius", "--version"]).decode().split('\n')
 params_list.update({'version_info':[{'git_commit':git.Repo(search_parent_directories=True).head.object.hexsha},
-                                    {'git_commit_link':f'https://github.com/enpkg/enpkg_sirius_canopus/tree/{git.Repo(search_parent_directories=True).head.object.hexsha}'}]})
-
+                                    {'git_commit_link':f'https://github.com/enpkg/enpkg_sirius_canopus/tree/{git.Repo(search_parent_directories=True).head.object.hexsha}'},
+                                    {'SIRIUS':sirius_version_str[0]},
+                                    {'SIRIUS lib':sirius_version_str[1]},
+                                    {'CSI:FingerID lib':sirius_version_str[2]}]})
 
 if sirius_version == 4:
     from canopus import Canopus
@@ -41,6 +44,7 @@ def compute_sirius_canopus(file, output_name):
                       
 path = os.path.normpath(path_to_data)
 samples_dir = [directory for directory in os.listdir(path)]
+
 for directory in tqdm(samples_dir):
     metadata_path = os.path.join(path, directory, directory + '_metadata.tsv')
     try:
