@@ -1,6 +1,7 @@
 # enpkg_sirius_canopus
 
 ![release_badge](https://img.shields.io/github/v/release/enpkg/enpkg_sirius_canopus)
+![license](https://img.shields.io/github/license/enpkg/enpkg_sirius_canopus)
 
 Python script to lauch Sirius/ZODIAC/CSI-FingerID/CANOPUS + NPC Canopus on unaligned repositories.  
 
