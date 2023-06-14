@@ -5,7 +5,7 @@
 
 Python script to lauch Sirius/ZODIAC/CSI-FingerID/CANOPUS + NPC Canopus on unaligned repositories.  
 
-⚙️ Workflow part of [enpkg_workflow](https://github.com/enpkg/enpkg_workflow).  
+⚙️ Module part of [enpkg_workflow](https://github.com/enpkg/enpkg_workflow).  
 
 ## Required starting architecture
 ```
