@@ -18,17 +18,20 @@ with open (r'configs/user/user.yml') as file:
     params_list = yaml.load(file, Loader=yaml.FullLoader)
 
 path_to_data = params_list['paths'][0]['path_to_data']
+path_to_sirius = params_list['paths'][1]['path_to_sirius']
 
 sirius_version = params_list['options'][0]['sirius_version']
 ionization = params_list['options'][1]['ionization']
-sirius_command = params_list['options'][2]['sirius_command']
+sirius_command_arg = params_list['options'][2]['sirius_command_arg']
 recompute = params_list['options'][3]['recompute']
 zip_output = params_list['options'][4]['zip_output']
 
 output_suffix = 'WORKSPACE_SIRIUS'
 
+sirius_command = path_to_sirius + ' ' + sirius_command_arg
+
 """ Parameters used """
-sirius_version_str = subprocess.check_output(["sirius", "--version"]).decode().split('\n')
+sirius_version_str = subprocess.check_output(["/prog/sirius/bin/sirius", "--version"]).decode().split('\n')
 params_list.update({'version_info':[{'git_commit':git.Repo(search_parent_directories=True).head.object.hexsha},
                                     {'git_commit_link':f'https://github.com/enpkg/enpkg_sirius_canopus/tree/{git.Repo(search_parent_directories=True).head.object.hexsha}'},
                                     {'SIRIUS':sirius_version_str[0]},
