@@ -14,6 +14,6 @@ dependencies:
   - pyyaml==6.0
   - tqdm==4.65.0
   - pip:
-    -GitPython==3.1.31
+    - GitPython==3.1.31
 
 prefix: \opt\anaconda3\envs\sirius_canopus_single_files
